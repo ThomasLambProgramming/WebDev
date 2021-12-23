@@ -1,6 +1,4 @@
-let admin = "name";
-let name = "john";
-admin = name;
+let admin = {
+    name: "john"
+};
 
-
-alert(admin);

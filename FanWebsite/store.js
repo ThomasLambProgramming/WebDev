@@ -66,6 +66,11 @@ function ready()
     }
 }
 
+//elements have a .removeChild (i think that is remove element)
+//they also have a element.firstChild so we can do a loop to remove all of the children
+//from a div or etc
+
+
 //CREATING DIVS ELEMENTS AND SHIT
 
 function addItemToCart(title, price, imageSrc)

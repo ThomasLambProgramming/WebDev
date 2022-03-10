@@ -1,0 +1,6 @@
+render returns a description of what you want to see on the screen
+render returns a react element which is a lightweight description of what to render
+
+most react devs use a special syntax called jsx which makes it easier to write
+
+react element is a javascript object that you can store ina  variable or pass around

@@ -2,33 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-  //Gives html from what i can see and returns it to be rendered
-  render() {
-    return (
-      <button 
-        className="square" 
-        //not sure where to put this but the html attributes that get given to a component seem to be then put into props so thats why we can call
-        //props.onClick() because board gives the onclick and the value
-        onClick={() => this.props.onClick()}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+
+//We can make a function that takes in props and returns whatever we want to be rendered, this is a funciton component we do this 
+//when the function only needs to have the render function and use a class that extents react.component when we need more than render
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {/*Display the props value as the button text*/}
+      {props.value}
+    </button>
+  );
 }
 
+
 class Board extends React.Component {
-
-  constructor(props)
-  {
-    //Call the parent constructor, so it makes the react component i think and then whatever we are doing
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-    }
-  }
-
   renderSquare(i) {
     return (
       <Square 
@@ -40,12 +27,28 @@ class Board extends React.Component {
 
   handleClick(i)
   {
+    const squaresNew = this.state.squares.slice();
 
+    //Exit early if the square has a value or the game has already been won
+    if (calculateWinner(squaresNew) || squaresNew[i])
+      return;
+
+    squaresNew[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squaresNew,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   //Gives html from what i can see and returns it to be rendered
   render() {
-    const status = 'Next player: X';
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner) {
+      status = 'Winner ' + winner 
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
@@ -71,6 +74,21 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props)
+  {
+    //Call the parent react.component constructor as well as this one so it is one whole component with our addons
+    super(props);
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      xIsNext: true,
+    };
+  }
+
+
+
+
   //Gives html from what i can see and returns it to be rendered
   render() {
     return (
@@ -86,6 +104,27 @@ class Game extends React.Component {
     );
   }
 }
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
 
 // ========================================
 

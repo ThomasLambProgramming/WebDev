@@ -1,50 +1,47 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/dist/client/link';
-import matter from 'gray-matter';
-import fs from 'fs'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Link from "next/dist/client/link";
+import matter from "gray-matter";
+import fs from "fs";
 
 export default function Home({ posts }) {
-  return(
-    <div className='grid gid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 md:p-0'>
-      {posts.map(({ slug, frontmatter }) =>(
+  return (
+    <div className="grid gid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 md:p-0">
+      {posts.map(({ slug, frontmatter }) => (
         // key seems to be the list index sort of thing to map out elements nicer or something
-        <div 
-        key={slug}
-        className="border border-gray-200 m-2 rounded-x1 shadow-lg overflow-hidden flex flex-col"
+        <div
+          key={slug}
+          className="border border-gray-200 m-2 rounded-x1 shadow-lg overflow-hidden flex flex-col"
         >
           <Link href={`/post/${slug}`}>
             <a>
-              <Image 
+              <Image
                 width={650}
                 height={340}
                 alt={frontmatter.title}
                 src={`/${frontmatter.socialImage}`}
               />
-              <h1 className='p-4'>{frontmatter.title}</h1>
+              <h1 className="p-4">{frontmatter.title}</h1>
             </a>
           </Link>
         </div>
       ))}
     </div>
   );
-
-
 }
 
-export async function getStaticProps()
-{
-  //get all posts 
-  const files = fs.readdirSync('posts');
+export async function getStaticProps() {
+  //get all posts
+  const files = fs.readdirSync("posts");
 
   const posts = files.map((fileName) => {
     //change the filename to nothing to get just the filename i think
-    const slug = fileName.replace('.md', '');
+    const slug = fileName.replace(".md", "");
     //read the file contents with readFileSync
-    const readFile = fs.readFileSync(`posts/${fileName}`, 'utf-8');
+    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
     //get the data into objects with gray-matter
-    const {data: frontmatter} = matter(readFile);
+    const { data: frontmatter } = matter(readFile);
 
     return {
       //Slug is the identifier of the web address etc website.com/home home is the slug
@@ -56,13 +53,9 @@ export async function getStaticProps()
   return {
     props: {
       posts,
-    }
-  }
+    },
+  };
 }
-
-
-
-
 
 /* Code that was in index.js 
 <div className={styles.container}>

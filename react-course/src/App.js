@@ -30,7 +30,7 @@ function App() {
 
 
   return (
-    //react allows only one root component eg div and etc otherwise it will not accept it. (cause that isnt really a singular component then)
+    //react allows only one root component eg div and etc otherwise it will not accept it. (cause that isnt really a single component then)
     <div>
       <NewExpense onAddExpense={logExpense}/>
       {/* REACT WILL LOOK FOR CUSTOM COMPONENTS WHEN IT STARTS WITH A CAPITAL THATS WHY WE CAPITALISE IT

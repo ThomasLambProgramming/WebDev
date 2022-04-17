@@ -1,0 +1,90 @@
+function name(props)
+{
+    javascript
+    return (
+        return jsx <div>
+    );
+}
+this is a functional component (no logic and etc or state)
+
+in jsx {} is a dynamic expression
+this means that we can run javascript / react or just render a variable (so the value can be updated)
+{<card />} is completely fine 
+
+
+import { useState } from "react";
+gives access to useState
+this gives us a way to store the state of the component and to trigger a rerender
+running the changer basically flags that component and state to be updated
+const [variableToChange, ChangeVariableFunction] = useState('initialValue');
+then when we use ChangeVariableFunction(newvalue) react will schedule this to change and then update component
+if variable rely on old version to only update one (such as with a useState object variable not just an int)
+we use ChangeVariableFunction((CurrentVersionOfValue) => {...CurrentVersionOfValue, newValue = newvalue})
+since react schedules the update not does it right away we need to give it a function to run react
+will auto give us the current version of the state instead of the one that we had when we ran update
+because it could have changed by then.
+
+jsx
+className instead of class in html is because class is a reserved name in javascript
+jsx needs one root element in a return cannot have more than one (<div> for example)
+
+
+props is the properties given to the component through assigning attributes from the parent
+etc RandomComponent
+
+<RandomComponent title="Yeet" />
+props will now have yeet as the .title (must have same name in attributes and in component)
+
+a component is just a javascript function that returns jsx code
+name the component the same as the file name is applicable 
+
+we can use two way binding to update the ui and our logic 
+etc we can have a state that will have the year we want to start with but then give
+an input field the value={stateVariable} so we can update logic and update ui because they are bound
+both ways because onchange in the input will also update the statevariable with the setter
+
+ {/* REACT WILL LOOK FOR CUSTOM COMPONENTS WHEN IT STARTS WITH A CAPITAL THATS WHY WE CAPITALISE IT
+      LOWERCASE WILL BE READ AS HTML BECAUSE HTML IS ALL LOWERCASE eg. div, h1 etc */}
+
+using useState on multiple variables in one component is completely fine but keep in mind they will all be seperate
+and not managed together
+
+html input will always be a string
+
+we can give useState an object to store multiple values.
+
+ setUserInput({
+              ...userInput,
+          enteredTitle: event.target.value;
+      })
+setUserInput((prevState) => {return {prevState..., enteredTitle : event.target.value}}); (correct way of doing it)
+
+so in js addEventListener gives an event object, we also get that as well in react
+making a function and giving it an event parameter (standard naming) will let us use all the event stuff
+we use it by in input for example onChange={function} and it will auto give us the event object in that function
+
+
+onChange input is when any change happens
+onSubmit on a form is when it is submitted however its better than onclick because it gives the onsubmit when enter key is done and etc
+
+we can make custom ons as well and that is how we pass data through upwards to parents
+parent function gives child a event onwhatever or can name it anything and gives it a function to run with a parameter 
+child will then run the given event and hand the parameter in to pass data upwards
+
+downwards is just handing a variable through an attribute on the child and accessing with a prop
+
+
+
+//In functional components (non class ones that just return jsx or simple stuff with only a props input)
+//can have this function syntax or just regular syntax with function NewExpense(){} it doesnt matter
+//it only matters when then using state components that use the extends react.component shit
+
+event.preventDefault can stop stuff (also stop the form reloading the page)
+
+//Card is apparently a common thing to say in web development
+//this will just be a predefined look
+
+//classname will just add anything else onto the component so
+//then we can make this function a wrapper to contain stuff without
+//needing to write any doubles of css code and etc.
+//Props.children is anything inbetween the react component

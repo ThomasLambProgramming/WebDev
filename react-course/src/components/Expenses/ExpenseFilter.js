@@ -24,18 +24,6 @@ const ExpensesFilter = (props) => {
       </div>
     </div>
   );
-
-  //the curly braces in jsx is to have a dynamic expression (i think cause its
-  //in the code and will be updated and therefore have a different value on reload)
-  //{}
-
-  /*
-            {[<card />, <card />]}
-            this will just render the 2 cards
-            {<ExpenseItem />} will just render it.
-            so we can then use {javascript code to output jsx}
-            use map to then use the function and shit to render items dynamically
-  */
 };
 
 export default ExpensesFilter;

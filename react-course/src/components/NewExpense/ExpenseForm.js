@@ -6,6 +6,8 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [displayCreate, setCreateState] = useState('false');
+
 
   //Example = document.getElementById("idname").addEventListener('click', (event) => {}) this is how we get the event object same thing
   const titleChangeHandler = (event) => {
@@ -22,7 +24,7 @@ const ExpenseForm = (props) => {
     event.preventDefault(); //This stops the page from reloading (default javascript stuff here)
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     setEnteredTitle("");
@@ -30,8 +32,26 @@ const ExpenseForm = (props) => {
     setEnteredDate("");
 
     props.onSaveExpenseData(expenseData);
+    setNoForm();
   };
 
+  const setNoForm = () => {
+    setCreateState('false');
+    console.log("test");
+  }
+  const setYesForm = () => {
+    setCreateState('true');
+  }
+  //Rendering the add new form button
+  if (displayCreate === 'false')
+  {
+      return(
+        <button onClick={setYesForm}>Create new Expense</button>
+      );
+  }
+
+
+  //This is returning the actual submitting form
   return (
     //onsubmit is an inbult thing that whenever the form is submitted in any way (not just onenter or onclick) it will run the event
     <form onSubmit={submitHandler}>
@@ -69,6 +89,7 @@ const ExpenseForm = (props) => {
       </div>
 
       <div className="new-expense__actions">
+          <button onClick={setNoForm}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

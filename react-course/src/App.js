@@ -24,10 +24,15 @@ function App() {
     },
   ];
 
+  const logExpense = (newExpense) => {
+    console.log(newExpense);
+  };
+
+
   return (
     //react allows only one root component eg div and etc otherwise it will not accept it. (cause that isnt really a singular component then)
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={logExpense}/>
       {/* REACT WILL LOOK FOR CUSTOM COMPONENTS WHEN IT STARTS WITH A CAPITAL THATS WHY WE CAPITALISE IT
       LOWERCASE WILL BE READ AS HTML BECAUSE HTML IS ALL LOWERCASE eg. div, h1 etc */}
         <Expenses expenses={expenses} expenseAmount={4} />

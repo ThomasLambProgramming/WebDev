@@ -88,3 +88,33 @@ event.preventDefault can stop stuff (also stop the form reloading the page)
 //then we can make this function a wrapper to contain stuff without
 //needing to write any doubles of css code and etc.
 //Props.children is anything inbetween the react component
+
+
+we can mass return jsx objects in a {} to dynamically render stuff 
+etc {array.map(value => {<div>value.title and etc})}
+
+
+
+{/* There is 3 ways curently that i have seen to do dynamic conditional content
+    
+      make a jsx variable (because thats a thing and thats cool)
+      let expenseContent = <p>No Content Found</p>;
+
+      if (filteredExpenses.length > 0)
+        expenseContent = the content logic below with the map
+
+      then just {expenseContent} in the return
+
+
+      in jsx we can use ternery operators to do conditional
+      {filteredContent.length === 0 ? < <p>No Content Found</p> : 
+        content logic function map thing}
+
+      apparently we cant use if or for loops in the jsx return either.
+
+
+      third way is an abuse of && and operator
+
+      {filteredContent === 0 && rest of expression}
+      because && will only run the rest if that first part is true cause why would && continue after the first one fails.
+    */}

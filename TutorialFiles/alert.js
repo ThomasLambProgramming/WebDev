@@ -1,4 +1,0 @@
-let admin = {
-    name: "john"
-};
-

@@ -14,9 +14,7 @@ export default function Layout({ children }) {
         </div>
       </header>
 
-      {/*Why the hell is this the comment structure for jsx 
-            We render all the children given through the children property
-            */}
+      {/*Why the hell is this the comment structure for jsx */}
       <main className="container mx-auto flex-1">{children}</main>
 
       <footer className="bg-red-500 mt-8 py-4">
